@@ -1,6 +1,6 @@
 
 # Membes contract
-This repo contains [Membes Place](http://members.place) contracts. We use Binance Smart Chain for deployment.
+This repo contains [Membes Place](http://membes.place) contracts. We use Binance Smart Chain for deployment.
 
 ## About
 Currently, contracts are deployed via Remix hence the truffle-config file does not include any mainnet or testnet settings.
