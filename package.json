@@ -2,20 +2,45 @@
   "name": "members-contracts",
   "version": "0.1.0",
   "description": "members contracts",
-  "main": "truffle-config.js",
+  "main": "",
   "directories": {
     "test": "test"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.0.0",
-    "truffle-assertions": "^0.9.2"
+    "husky": "4.3.8"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "chai": "^4.3.4",
+    "eslint": "^7.25.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "ethereum-waffle": "^3.3.0",
+    "ethers": "^5.1.4",
+    "hardhat": "^2.2.1",
+    "lint-staged": "^10.5.4"
+  },
   "scripts": {
-    "test": "truffle test",
-    "compile": "truffle compile",
-    "console": "truffle console",
-    "migrate": "truffle migrate --reset"
+    "test": "npx hardhat test",
+    "compile": "npx hardhat compile",
+    "lint:test": "eslint ./test/**/*.js --fix",
+    "lint:migrations": "eslint ./migrations/**/*.js --fix",
+    "lint:config": "eslint ./hardhat.config.js .eslintrc.js --fix --ext .js",
+    "lint": "npm run lint:test && npm run lint:migrations && npm run lint:config"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix"
+    ]
   },
   "author": "",
   "license": "GPL-3.0"
