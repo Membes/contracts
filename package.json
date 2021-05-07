@@ -8,10 +8,13 @@
   },
   "dependencies": {
     "@openzeppelin/contracts": "^4.0.0",
-    "husky": "4.3.8"
+    "bip39": "^3.0.4",
+    "husky": "4.3.8",
+    "web3": "^1.3.5"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "@nomiclabs/hardhat-etherscan": "^2.1.2",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "chai": "^4.3.4",
     "eslint": "^7.25.0",
@@ -20,17 +23,24 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "ethereum-waffle": "^3.3.0",
+    "ethereumjs-util": "^7.0.10",
     "ethers": "^5.1.4",
     "hardhat": "^2.2.1",
-    "lint-staged": "^10.5.4"
+    "lint-staged": "^10.5.4",
+    "solc-0.8": "npm:solc@0.8.0",
+    "solidity-docgen": "^0.5.13"
   },
   "scripts": {
+    "docs": "npx solidity-docgen --solc-module solc-0.8",
     "test": "npx hardhat test",
     "compile": "npx hardhat compile",
     "lint:test": "eslint ./test/**/*.js --fix",
-    "lint:migrations": "eslint ./migrations/**/*.js --fix",
-    "lint:config": "eslint ./hardhat.config.js .eslintrc.js --fix --ext .js",
-    "lint": "npm run lint:test && npm run lint:migrations && npm run lint:config"
+    "lint:scripts": "eslint ./scripts/**/*.js --fix",
+    "lint:config": "eslint ./hardhat.config.js .eslintrc.js --fix",
+    "lint": "npm run lint:test && npm run lint:config && npm run lint:scripts",
+    "confirm": "npm run lint && npm run test",
+    "deploy:testnet": "npm run confirm && npx hardhat run --network testnet scripts/deploy.js",
+    "deploy:mainnet": "npm run confirm && npx hardhat run --network mainnet scripts/deploy.js"
   },
   "husky": {
     "hooks": {

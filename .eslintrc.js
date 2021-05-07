@@ -17,7 +17,9 @@ module.exports = {
   rules: { },
   globals: {
     ethers: true,
-    artifacts: true
+    artifacts: true,
+    task: true,
+    waffle: true
   },
   settings: { }
 }
